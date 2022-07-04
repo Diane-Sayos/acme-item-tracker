@@ -39,8 +39,8 @@ app.post('/api/users', async(req, res, next) => {
 app.put('/api/things/:id', async(req, res, next) => {
   try{
     const updateThing = await Thing.findByPk(req.params.id);
-    await updateThing.update(req.body);
-    res.sendStatus(204)
+    const newThing = await updateThing.update(req.body);
+    res.status(201).send(newThing);
   }
   catch(ex){
     next(ex)

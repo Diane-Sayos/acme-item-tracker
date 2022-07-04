@@ -40,18 +40,12 @@ const store = createStore((state = initialState, action)=> {
     const decThings = state.things.map(_thing => _thing)
     return {...state, things: decThings}
   }
-  // if(action.type === 'UPDATE_OWNER'){
-  //   const updated = state.things.map(_thing => {
-  //     if(Object.is(action.thing.id, _thing.id)){
-  //       _thing = action.thing;
-  //       return _thing
-  //     }
-  //     return _thing;
-  //   })
-  //   return {...state, thing: updated}
-  // }
+  if(action.type === 'UPDATE_OWNER'){
+    const updated = state.things.filter(_thing => _thing.id !== action.updatedThing.id);
+    const updateThings = [...updated, action.updatedThing].sort((a,b) => a.id - b.id)
+    return {...state, things: updateThings}
+  }
   return state;
 });
 
 export default store;
-
