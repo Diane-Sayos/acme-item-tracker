@@ -13,7 +13,7 @@ const UserDelete = ({ deleteUser, user })=> {
 const mapDispatchToProps = (dispatch)=> {
   return {
     deleteUser: async(user)=> {
-        await axios.delete(`/api/things/${user.id}`);
+        await axios.delete(`/api/users/${user.id}`);
         dispatch({type: 'DELETE_USER', user})
     }
   };
